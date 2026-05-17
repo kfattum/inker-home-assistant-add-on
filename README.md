@@ -1,6 +1,6 @@
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png)](https://buymeacoffee.com/wojo_o)
 
-# Inker v0.3.3
+# Inker v0.4.0
 
 Self-hosted e-ink device management server built for the homelab community. Works with [TRMNL](https://usetrmnl.com/) devices (supports firmware 1.7.8) and any BYOD e-ink display. Design screens, create custom widgets with live data from your local network, and manage your displays from a modern web interface.
 
@@ -13,7 +13,7 @@ Inker is heading in its own direction — focusing on homelab integrations like 
 - **Screen Designer** — Drag & drop widget placement, snap guides, freehand drawing, auto-fit zoom for any resolution
 - **Built-in Widgets** — Clock, date, text, weather, countdown, days until, QR code, image, GitHub stars, battery, WiFi, device info
 - **Custom Widgets** — Connect to any JSON API or RSS feed (including local network sources), JavaScript transformations, grid layouts
-- **Plugins** — Coming soon — homelab-native integrations for server monitoring, smart home, network stats
+- **Plugins** — Grafana panel integration with dashboard picker, live preview, and section grid compositing. More homelab-native plugins coming soon!
 - **Playlists** — Rotate multiple screens on devices automatically
 - **Device Management** — Auto-provisioning, firmware 1.7.8 support, real-time status, logs
 - **BYOD Support** — Register any e-ink device manually with custom screen resolution
@@ -29,7 +29,24 @@ Inker is heading in its own direction — focusing on homelab integrations like 
 |:-:|:-:|:-:|
 | ![Extensions](https://github.com/user-attachments/assets/534b5104-8f1c-4a42-8c58-f2cef74dbc92) | ![Custom data sources](https://github.com/user-attachments/assets/03ed0dc8-7ae0-44fa-ace7-890b5ec8f385) | ![Custom widgets](https://github.com/user-attachments/assets/0eb10812-568a-46db-b58e-7e82c19ea403) |
 
-## Quick start
+
+<div align="center">
+
+| Grafana Plugin |
+|:-:|
+| <img width="735" height="559" alt="image" src="https://github.com/user-attachments/assets/4312d7c6-7b99-45d6-bb27-5b0f902f60c9" /> |
+
+</div>
+
+| #1 Example Grafana | #2 Example Grafana |
+|:-:|:-:|
+|<img width="800" height="480" alt="image" src="https://github.com/user-attachments/assets/4073360a-470b-4fd2-ae4c-362e71b3467e" />|<img width="800" height="480" alt="image" src="https://github.com/user-attachments/assets/224994f6-27e4-41c0-9a0c-7b88598b6c22" />|
+
+
+
+
+
+## Quick start & Technical information
 
 ### Docker Run
 
