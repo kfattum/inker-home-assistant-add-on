@@ -201,6 +201,13 @@ export class ApiController {
       'version',
     ]);
 
+    // Extract screen design ID override header (forces a specific screen design ID)
+    const screenDesignIdOverride = this.extractHeader(headers, [
+      'screen-design-id-override',
+      'Screen-Design-ID-Override',
+      'screen_design_id_override',
+    ]);
+
     // Parse battery voltage to percentage (approximate conversion)
     // Typical LiPo: 4.2V = 100%, 3.0V = 0%
     const batteryVoltage = batteryVoltageStr ? parseFloat(batteryVoltageStr) : undefined;
@@ -236,6 +243,7 @@ export class ApiController {
         { battery, wifi },
         baseUrl,
         firmwareVersion,
+        screenDesignIdOverride,
       );
 
       this.logger.debug(`Display content served to device: ${deviceApiKey.slice(0, 8)}... (baseUrl: ${baseUrl})`);
