@@ -1,0 +1,13 @@
+#!/bin/sh
+if [ -f /data/options.json ]; then
+    echo "[init] Loading Home Assistant addon options..."
+    bun -e "
+        const opts = JSON.parse(require('fs').readFileSync('/data/options.json','utf8'));
+        for (const [k,v] of Object.entries(opts)) {
+            if (v !== null && v !== undefined && v !== '') {
+                require('fs').writeFileSync('/run/s6/container_environment/' + k, String(v));
+            }
+        }
+    "
+    echo "[init] Home Assistant options loaded successfully"
+fi
