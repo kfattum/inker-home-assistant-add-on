@@ -1,0 +1,23 @@
+name: "inker ha app"
+description: "Inker - Self-hosted e-ink device management server"
+version: "4.0"
+slug: "inker-ha-app"
+url: "https://github.com/kfattum/test-inker-ha-app"
+init: false
+arch:
+  - amd64
+startup: application
+boot: auto
+panel_title: "Inker"
+panel_icon: "mdi:tablet-dashboard"
+ports:
+  80/tcp: 80
+webui: "http://[HOST]:[PORT:80]/"
+options:
+  ADMIN_PIN: "1111"
+  DEFAULT_TIMEZONE: "UTC"
+  TZ: "UTC"
+schema:
+  ADMIN_PIN: str
+  DEFAULT_TIMEZONE: str
+  TZ: str

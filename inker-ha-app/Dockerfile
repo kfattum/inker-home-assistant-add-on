@@ -201,8 +201,8 @@ RUN chmod +x /etc/cont-init.d/* && \
 # Create required directories
 RUN mkdir -p /app/uploads/screens /app/uploads/firmware /app/uploads/widgets \
     /app/uploads/captures /app/uploads/drawings /app/logs \
-    /data /var/lib/postgresql/17/main /run/postgresql && \
-    chown -R postgres:postgres /var/lib/postgresql /run/postgresql
+    /data/uploads /data/postgresql/17/main /run/postgresql && \
+    chown -R postgres:postgres /data/postgresql /run/postgresql
 
 # Create non-root user for backend process
 RUN useradd --system --no-create-home --shell /usr/sbin/nologin inker && \

@@ -1,0 +1,23 @@
+#!/bin/sh
+set -e
+
+echo "[init] Setting up persistent storage..."
+
+# Migrate uploads from old location to persistent /data
+if [ -d /app/uploads ] && [ ! -L /app/uploads ]; then
+    echo "[init] Moving uploads to /data/uploads..."
+    mkdir -p /data
+    cp -a /app/uploads/. /data/uploads/ 2>/dev/null || true
+    rm -rf /app/uploads
+fi
+
+# Create symlink from /app/uploads to persistent /data/uploads
+ln -sfn /data/uploads /app/uploads
+
+# Ensure upload subdirectories exist
+mkdir -p /data/uploads/screens /data/uploads/firmware /data/uploads/widgets /data/uploads/captures /data/uploads/drawings /app/logs
+
+# Ensure proper ownership
+chown -R inker:inker /data/uploads /app/logs
+
+echo "[init] Persistent storage ready"
