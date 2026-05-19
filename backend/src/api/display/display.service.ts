@@ -39,7 +39,6 @@ export class DisplayService {
    * @param useBase64 - Whether to include base64 encoded image
    * @param metrics - Device metrics (battery, wifi)
    * @param baseUrl - Dynamic base URL from request (e.g., "http://localhost:3002")
-   * @param screenDesignIdOverride - Optional screen design ID override from Screen-Design-ID-Override header
    */
   async getDisplayContent(
     macAddressOrApiKey: string,
@@ -47,7 +46,6 @@ export class DisplayService {
     metrics?: { battery?: number; wifi?: number },
     baseUrl?: string,
     firmwareVersion?: string,
-    screenDesignIdOverride?: string,
   ) {
     // Use dynamic baseUrl from request, or fall back to config
     const apiUrl = baseUrl || this.config.get<string>('api.url', 'http://localhost:3002');
@@ -356,11 +354,6 @@ export class DisplayService {
       // This ensures consistent URLs and up-to-date content for all widget types
       const timestamp = Date.now();
 
-      // If Screen-Design-ID-Override header is provided, use it to override the screen design ID
-      const screenDesignId = screenDesignIdOverride && !isNaN(parseInt(screenDesignIdOverride, 10))
-        ? parseInt(screenDesignIdOverride, 10)
-        : currentScreen.screenDesign.id;
-
       const queryParams = new URLSearchParams({
         t: timestamp.toString(),
         battery: (updatedDevice.battery ?? 0).toString(),
@@ -369,14 +362,14 @@ export class DisplayService {
         firmwareVersion: device.firmwareVersion || 'Unknown',
         macAddress: device.macAddress ? `XX:XX:XX:${device.macAddress.slice(-8)}` : 'Unknown',
       });
-      const renderUrl = `${apiUrl}/api/device-images/design/${screenDesignId}?${queryParams.toString()}`;
+      const renderUrl = `${apiUrl}/api/device-images/design/${currentScreen.screenDesign.id}?${queryParams.toString()}`;
 
       // CRITICAL: Include timestamp in filename to force device to fetch new image
       // The TRMNL device firmware caches images by filename, so if we always return
       // "design-5.png", the device thinks it already has this image and won't fetch
       // the new URL. By changing the filename on each request (e.g., "design-5-1702069200000.png"),
       // the device recognizes it as a new file and downloads the fresh image.
-      const dynamicFilename = `design-${screenDesignId}-${timestamp}.png`;
+      const dynamicFilename = `design-${currentScreen.screenDesign.id}-${timestamp}.png`;
 
       this.logger.debug(
         `Serving screen "${currentScreen.screenDesign.name}" to device ${device.name} (refresh: ${effectiveRefreshRate}s, next_at: ${nextRefreshAt ? new Date(nextRefreshAt).toISOString() : 'N/A'})`,
