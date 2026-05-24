@@ -2,7 +2,7 @@ name: "Inker"
 description: "Inker - Self-hosted e-ink device management server"
 version: "4.0.1"
 slug: "inker-ha-app"
-url: "https://github.com/kfattum/inker-home-assistant-add-on"
+url: "https://github.com/kfattum/inker-home-assistant-app"
 init: false
 arch:
   - amd64
