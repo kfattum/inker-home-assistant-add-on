@@ -11,8 +11,8 @@ boot: auto
 panel_title: "Inker"
 panel_icon: "mdi:tablet-dashboard"
 ports:
-  80/tcp: 80
-webui: "http://[HOST]:[PORT:80]/"
+  8124/tcp: 8124
+webui: "http://[HOST]:[PORT:8124]/"
 options:
   ADMIN_PIN: "1111"
   DEFAULT_TIMEZONE: "UTC"

@@ -6,7 +6,7 @@ export const configuration = () => ({
     url: process.env.API_URL || `http://localhost:${process.env.PORT || '3002'}`,
   },
 
-  inkerPort: parseInt(process.env.INKER_PORT || '80', 10),
+  inkerPort: parseInt(process.env.INKER_PORT || '8124', 10),
 
   database: {
     url: process.env.DATABASE_URL,

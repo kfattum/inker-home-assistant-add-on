@@ -208,11 +208,11 @@ RUN mkdir -p /app/uploads/screens /app/uploads/firmware /app/uploads/widgets \
 RUN useradd --system --no-create-home --shell /usr/sbin/nologin inker && \
     chown -R inker:inker /app
 
-EXPOSE 80
+EXPOSE 8124
 
 # Health check via nginx
 HEALTHCHECK --interval=30s --timeout=5s --start-period=60s --retries=3 \
-    CMD bun -e "const r=await fetch('http://127.0.0.1/health');process.exit(r.ok?0:1)" || exit 1
+    CMD bun -e "const r=await fetch('http://127.0.0.1:8124/health');process.exit(r.ok?0:1)" || exit 1
 
 # s6-overlay entrypoint
 ENTRYPOINT ["/init"]

@@ -91,7 +91,7 @@ export class ApiController {
     // If Host header already has a port, trust it (device/browser sent the correct port)
     // If Host has no port and INKER_PORT is non-standard, append it
     if (!host.includes(':')) {
-      const inkerPort = this.configService.get<number>('inkerPort', 80);
+      const inkerPort = this.configService.get<number>('inkerPort', 8124);
       if (inkerPort && inkerPort !== 80) {
         host = `${host}:${inkerPort}`;
       }
